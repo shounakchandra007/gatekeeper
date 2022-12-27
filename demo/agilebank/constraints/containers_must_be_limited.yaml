@@ -3,10 +3,14 @@ kind: K8sContainerLimits
 metadata:
   name: container-must-have-limits
 spec:
-  match:
-    kinds:
-      - apiGroups: [""]
-        kinds: ["Pod"]
-  parameters:
-    cpu: "200m"
-    memory: "1Gi"
+  containers:
+  - image: nginx
+    imagePullPolicy: Always
+    name: nginx
+    resources:
+      limits:
+        cpu: 300m
+        memory: 200Mi
+      requests:
+        cpu: 200m
+        memory: 100Mi
